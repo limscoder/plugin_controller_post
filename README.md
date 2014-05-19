@@ -4,6 +4,8 @@ Using plugins as controllers for Ext.Components
 ExtJs with MVC
 ==============
 
+Thanks Dave! Do you think you could kick off with a brief sentence that sets a little context? Like, "Here at Rally we've been using MVC for ....." Or, "When we're building X, one of the things we like about Sencha is ...."
+
 First off, "MVC" in this post refers to unopinionated, generic MVC. View == UI, Model == application logic, Controller == glue between View and Model. "Component" refers to a class that extends [Ext.Component](http://docs.sencha.com/extjs/4.1.3/#!/api/Ext.Component).
 
 There are 2 popular ways to implement MVC with ExtJs applications. Sencha provides an [MVC implementation](http://docs.sencha.com/extjs/4.1.3/#/guide/application_architecture) distributed with ExtJs and [DeftJs](https://github.com/deftjs/DeftJS/) is a third-party  library. I have experimented with both of these MVC implementations, and found them lacking.
@@ -100,3 +102,4 @@ Wire up controller Plugins just like any other Plugin.
 		}]
 	});
 ```
+Similarly, it'd be great to have a sentence or two at the end here to wrap things up -- like, "Going forward, ...." or "In the future, ...." Something like that.
