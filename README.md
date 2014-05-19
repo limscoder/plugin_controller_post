@@ -23,7 +23,7 @@ I've found that standard Ext [Plugins](http://docs.sencha.com/extjs/4.1.3/#!/api
 
 Multiple Plugins can be configured for a single Component. This may seem like an odd property for a controller, but it's actually quite nice to split code into multiple controllers for Components that have many different behaviors.
 
-A Plugin's `init` method is called during the Component's `constructor` call, so it can respond to any Component events fired during the or after the Component's `initComponent` call. A Plugin's `destroy` method is called during the Component's `destroy` call, which allows for easy cleanup of listeners and models orchestrated by the Plugin.
+A Plugin's `init` method is called during the Component's `constructor` call, so it can respond to any Component events fired during or after the Component's `initComponent` call. A Plugin's `destroy` method is called during the Component's `destroy` call, which allows for easy cleanup of listeners and models orchestrated by the Plugin.
 
 So how does it Work?
 ====================
@@ -32,7 +32,7 @@ Wire up controller Plugins just like any other Plugin.
 
 ```javascript
 	/**
-	 * Contoller Plugin
+	 * Controller Plugin
 	 */
 	Ext.define('MyViewController', {
 		extend: 'Ext.AbstractPlugin',
@@ -44,10 +44,12 @@ Wire up controller Plugins just like any other Plugin.
 		store: null,
 
 		init: function(cmp) {
+			// add listeners to respond to UI events
 			cmp.on('save', this.onSave);
 		},
 
 		onSave: function(cmp, data) {
+			// respond to UI events by calling public view and model methods
 			cmp.setLoading(true);
 			this.store.add(new this.store.model(data))
 			this.store.sync({
@@ -78,6 +80,8 @@ Wire up controller Plugins just like any other Plugin.
 
 			this.addEvents(['save']);
 
+			// button click is abstracted into semantic event to avoid
+			// controller having to know UI implementation details
 			this.down('button').on('click', function() {
 				this.fireEvent('save', {...});
 			});
@@ -87,19 +91,12 @@ Wire up controller Plugins just like any other Plugin.
 	});
 ```
 
-```javascript	
-	// instantiate view with controller
+```javascript
+	// instantiate view with controller configuration
 	var cmp = container.add('myview', {
 		plugins: [{
 			ptype: 'myviewcontroller',
 			store: myStore
 		}]
-	});
-```
-
-```javascript
-	// instantiate same view with different controller
-	var cmp2 = contrainer.add('myview', {
-		plugins: ['myotherviewcontroller']
 	});
 ```
