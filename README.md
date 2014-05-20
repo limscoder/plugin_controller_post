@@ -1,6 +1,8 @@
 Using plugins as controllers for Ext.Components
 ===============================================
 
+Rally publishes a public javascript [AppSDK](https://help.rallydev.com/app-sdk) to enable customers with the ability to easily access their user story data within custom applications. There must be a clear separation between view code and model code within the SDK in order to make the SDK components more reusable in different contexts and provide easier application development.
+
 ExtJs with MVC
 ==============
 
@@ -100,3 +102,5 @@ Wire up controller Plugins just like any other Plugin.
 		}]
 	});
 ```
+
+Components architected with a plugin controller like the example above become easier to maintain and easier to consume. This method of adding controllers to Components is relatively painless to adapt to existing code. We are actively refactorring legacy code within Rally's SDK to use this architecture. 
